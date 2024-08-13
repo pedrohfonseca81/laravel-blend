@@ -25,7 +25,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "^9|^10|^11"
+        "illuminate/support": "^9|^10|^11",
+        "symfony/process": "^7.1"
     },
     "require-dev": {
         "pestphp/pest": "^2.34",
