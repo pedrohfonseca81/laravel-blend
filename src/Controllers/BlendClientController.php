@@ -8,6 +8,11 @@ class BlendClientController extends Controller
 {
     public function index()
     {
-        return "";
+        $jsFile = public_path('js/app.js');
+
+        $content = file_get_contents($jsFile);
+
+        return response($content, 200)
+            ->header('Content-Type', 'application/javascript');
     }
 }
