@@ -40,10 +40,6 @@ class NpmRegistry
 
         $this->verifySignature($message, $firstSignature['sig']);
 
-        // $this->verifyIntegrity($this->download($version), explode('-', $version['dist']['integrity'])[0], base64_encode($version['dist']['integrity'])[1]);
-
-        // dd($this->verifyIntegrity($this->download($version['version']), explode('-', $version['dist']['integrity'])[0], base64_encode($version['dist']['integrity'])[1]));
-
         return [
             'id' => $body->get('_id'),
             'rev' => $body->get('_rev'),
@@ -65,7 +61,8 @@ class NpmRegistry
         $absolutePath = Storage::path($this->path);
 
         $integrity = str($this->result['version']['dist']['integrity'])->explode('-');
-        dd($this->verifyIntegrity($tarballRaw, $integrity->first(), $integrity->last()));
+
+        $this->verifyIntegrity($absolutePath, $integrity[0], $integrity[1]);
 
         return $this;
     }
